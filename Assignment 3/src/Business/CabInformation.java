@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class CabInformation {
      private ArrayList<Car> carList;
      private ArrayList<Car> searchCarList;
+     private ArrayList<Car> tempArr;
      
      public CabInformation(){
      this.carList = new ArrayList<Car>();
@@ -70,9 +71,11 @@ public class CabInformation {
     carList.remove(car);
     }
 
-    public Iterable<Car> searchByBrand(String brandName) {
+    public ArrayList<Car> searchByBrand(String brandName, ArrayList<Car> tempArr) {
+        
         searchCarList = new ArrayList<Car>();
-        for(Car car: carList){
+        this.tempArr = tempArr;
+        for(Car car: tempArr){
             if (car.getBrand().equalsIgnoreCase(brandName)) {
                 searchCarList.add(car);
             }
@@ -80,9 +83,10 @@ public class CabInformation {
         return searchCarList;
     }
 
-    public Iterable<Car> searchByModelNumber(String ModelNumber) {
+    public ArrayList<Car> searchByModelNumber(String ModelNumber, ArrayList<Car> tempArr) {
        searchCarList = new ArrayList<Car>();
-        for(Car car: carList){
+        this.tempArr = tempArr;
+        for(Car car: tempArr){
             if (car.getModel_num().equalsIgnoreCase(ModelNumber)) {
                 searchCarList.add(car);
             }
@@ -90,9 +94,10 @@ public class CabInformation {
         return searchCarList;
     }
 
-    public Iterable<Car> searchByCity(String City) {
+    public ArrayList<Car> searchByCity(String City, ArrayList<Car> tempArr) {
         searchCarList = new ArrayList<Car>();
-        for(Car car: carList){
+       this.tempArr = tempArr;
+        for(Car car: tempArr){
             if (car.getAvailable_city().equalsIgnoreCase(City)) {
                 searchCarList.add(car);
             }
@@ -100,9 +105,10 @@ public class CabInformation {
         return searchCarList;
     }
 
-    public Iterable<Car> searchByManufactureYear(String ManfctYear) {
+    public ArrayList<Car> searchByManufactureYear(String ManfctYear, ArrayList<Car> tempArr) {
          searchCarList = new ArrayList<Car>();
-        for(Car car: carList){
+         this.tempArr = tempArr;
+         for(Car car: tempArr){
             if (car.getManufactured_year()== Integer.parseInt(ManfctYear)) {
                 searchCarList.add(car);
             }
@@ -110,25 +116,15 @@ public class CabInformation {
         return searchCarList;
     }
 
-    public Iterable<Car> searchBySerialNum(String SerialNo) {
+    public ArrayList<Car> searchBySerialNum(String SerialNo, ArrayList<Car> tempArr) {
         searchCarList = new ArrayList<Car>();
-        for(Car car: carList){
+        this.tempArr = tempArr;
+        for(Car car: tempArr){
             if (car.getSerial_num() == Integer.parseInt(SerialNo)) {
                 searchCarList.add(car);
             }
         }
         return searchCarList;
-    }
-
-    public Iterable<Car> searchMinMaxSeat(int minNoOfSeat, int maxNoOfSeat) {
-        searchCarList = new ArrayList<Car>();
-        for(Car car: carList){
-            if (car.getMin_seats()>= minNoOfSeat && car.getMax_seats()<= maxNoOfSeat) {
-                searchCarList.add(car);
-            }
-        }
-        return searchCarList;
-
     }
 
     public Iterable<Car> searchByAvailibilty() {
@@ -143,9 +139,10 @@ public class CabInformation {
         
     }
 
-    public Iterable<Car> searchByYesAvailable() {
+    public ArrayList<Car> searchByYesAvailable(ArrayList<Car> tempArr) {
          searchCarList = new ArrayList<Car>();
-        for(Car car: carList){
+        this.tempArr = tempArr;
+        for(Car car: tempArr){
             if (car.isAvailable()==true) {
                 searchCarList.add(car);
             }
@@ -154,9 +151,10 @@ public class CabInformation {
 
     }
 
-    public Iterable<Car> searchByYesMaintenanceCertificate() {
+    public ArrayList<Car> searchByYesMaintenanceCertificate(ArrayList<Car> tempArr) {
         searchCarList = new ArrayList<Car>();
-        for(Car car: carList){
+        this.tempArr = tempArr;
+        for(Car car: tempArr){
             if (car.isMaintenance_certificate()==true) {
                 searchCarList.add(car);
             }
@@ -164,9 +162,10 @@ public class CabInformation {
         return searchCarList;
     }
 
-    public Iterable<Car> searchByNoMaintenanceCertificate() {
+    public ArrayList<Car> searchByNoMaintenanceCertificate(ArrayList<Car> tempArr) {
         searchCarList = new ArrayList<Car>();
-        for(Car car: carList){
+        this.tempArr = tempArr;
+        for(Car car: tempArr){
             if (car.isMaintenance_certificate()==false) {
                 searchCarList.add(car);
             }
@@ -174,15 +173,27 @@ public class CabInformation {
         return searchCarList;
     }
 
-    public Iterable<Car> searchByNoAvailable() {
+    public ArrayList<Car> searchByNoAvailable(ArrayList<Car> tempArr) {
          searchCarList = new ArrayList<Car>();
-        for(Car car: carList){
+        this.tempArr = tempArr;
+        for(Car car: tempArr){
             if (car.isAvailable()==false) {
                 searchCarList.add(car);
             }
         }
         return searchCarList;
 
+    }
+
+    public ArrayList<Car> searchByMinMaxSeat(int minNoOfSeat, int maxNoOfSeat, ArrayList<Car> tempArr) {
+        searchCarList = new ArrayList<Car>();
+        this.tempArr = tempArr;
+        for(Car car: tempArr){
+            if (car.getMin_seats()>= minNoOfSeat && car.getMax_seats()<= maxNoOfSeat) {
+                searchCarList.add(car);
+            }
+        }
+        return searchCarList;
     }
     
    

@@ -24,7 +24,7 @@ public class ManageCarJPanel extends javax.swing.JPanel {
     
     private JPanel userProcessContainer;
     private CabInformation cabInformation;
-    
+    private ArrayList<Car> tempArr;
     /**
      * Creates new form ManageCarJPanel
      */
@@ -87,6 +87,7 @@ public class ManageCarJPanel extends javax.swing.JPanel {
         checkboxNoCertify = new javax.swing.JCheckBox();
         jLabel3 = new javax.swing.JLabel();
         btnBrandNameList = new javax.swing.JButton();
+        btnSecSearch = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 153, 153));
 
@@ -278,6 +279,13 @@ public class ManageCarJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnSecSearch.setText("Secondary Search");
+        btnSecSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSecSearchActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -342,23 +350,19 @@ public class ManageCarJPanel extends javax.swing.JPanel {
                                 .addComponent(checkboxNoCertify))
                             .addComponent(btnBrandNameList)))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel13)
                                         .addGap(18, 18, 18)
-                                        .addComponent(btnFirstAvailableCar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(btnFirstAvailableCar))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(btnView)
                                         .addGap(18, 18, 18)
-                                        .addComponent(btnDeleteCarEntry)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addComponent(btnDeleteCarEntry)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(575, 575, 575)
@@ -376,6 +380,10 @@ public class ManageCarJPanel extends javax.swing.JPanel {
                 .addGap(363, 363, 363)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSecSearch)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -443,7 +451,9 @@ public class ManageCarJPanel extends javax.swing.JPanel {
                         .addComponent(btnRangeMinMaxSeats)))
                 .addGap(27, 27, 27)
                 .addComponent(btnBrandNameList)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSecSearch)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -497,7 +507,8 @@ public class ManageCarJPanel extends javax.swing.JPanel {
             
              DefaultTableModel dtm = (DefaultTableModel) tblCars.getModel();
             dtm.setRowCount(0);
-            for(Car car: cabInformation.searchByModelNumber(txtModelNumber.getText()))
+            tempArr = cabInformation.searchByModelNumber(txtModelNumber.getText(), cabInformation.getCarList());
+            for(Car car: tempArr)
             {
             
                 Object[] row = new Object[9];
@@ -535,7 +546,8 @@ public class ManageCarJPanel extends javax.swing.JPanel {
         
             DefaultTableModel dtm = (DefaultTableModel) tblCars.getModel();
             dtm.setRowCount(0);
-            for(Car car: cabInformation.searchByManufactureYear(txtManfactYear.getText()))
+            tempArr = cabInformation.searchByManufactureYear(txtManfactYear.getText(), cabInformation.getCarList());
+            for(Car car: tempArr)
             {
             
                 Object[] row = new Object[9];
@@ -566,9 +578,9 @@ public class ManageCarJPanel extends javax.swing.JPanel {
             dtm.setRowCount(0);
             
             if(checkboxYesCertify.isSelected()== true){
-            for(Car car: cabInformation.searchByYesMaintenanceCertificate())
-            {
-            
+            tempArr = cabInformation.searchByYesMaintenanceCertificate(cabInformation.getCarList());
+            for(Car car: tempArr)
+            {                
                 Object[] row = new Object[9];
                 row[0]=car; //Overide Object ToString Brand Name
                 row[1]=car.getModel_num();
@@ -585,9 +597,9 @@ public class ManageCarJPanel extends javax.swing.JPanel {
             }
             }
             else{
-            for(Car car: cabInformation.searchByNoMaintenanceCertificate())
-            {
-            
+            tempArr = cabInformation.searchByNoMaintenanceCertificate(cabInformation.getCarList());
+            for(Car car: tempArr)
+            {     
                 Object[] row = new Object[9];
                 row[0]=car; //Overide Object ToString Brand Name
                 row[1]=car.getModel_num();
@@ -617,7 +629,8 @@ public class ManageCarJPanel extends javax.swing.JPanel {
         
             DefaultTableModel dtm = (DefaultTableModel) tblCars.getModel();
             dtm.setRowCount(0);
-            for(Car car: cabInformation.searchByBrand(txtBrandName.getText()))
+            tempArr = cabInformation.searchByBrand(txtBrandName.getText(), cabInformation.getCarList());
+            for(Car car: tempArr)
             {
             
                 Object[] row = new Object[9];
@@ -649,7 +662,8 @@ public class ManageCarJPanel extends javax.swing.JPanel {
         
             DefaultTableModel dtm = (DefaultTableModel) tblCars.getModel();
             dtm.setRowCount(0);
-            for(Car car: cabInformation.searchByCity(txtCity.getText()))
+       tempArr = cabInformation.searchByCity(txtCity.getText(), cabInformation.getCarList());
+            for(Car car: tempArr)
             {
             
                 Object[] row = new Object[9];
@@ -688,7 +702,8 @@ public class ManageCarJPanel extends javax.swing.JPanel {
         
             DefaultTableModel dtm = (DefaultTableModel) tblCars.getModel();
             dtm.setRowCount(0);
-            for(Car car: cabInformation.searchBySerialNum(txtSerialNumber.getText()))
+            tempArr = cabInformation.searchBySerialNum(txtSerialNumber.getText(), cabInformation.getCarList());
+            for(Car car: tempArr)
             {
             
                 Object[] row = new Object[9];
@@ -752,9 +767,9 @@ public class ManageCarJPanel extends javax.swing.JPanel {
         
             DefaultTableModel dtm = (DefaultTableModel) tblCars.getModel();
             dtm.setRowCount(0);
-            for(Car car: cabInformation.searchMinMaxSeat(minNoOfSeat,maxNoOfSeat))
+            tempArr = cabInformation.searchByMinMaxSeat(minNoOfSeat,maxNoOfSeat, cabInformation.getCarList());
+            for(Car car: tempArr)
             {
-            
                 Object[] row = new Object[9];
                 row[0]=car; //Overide Object ToString Brand Name
                 row[1]=car.getModel_num();
@@ -809,9 +824,9 @@ public class ManageCarJPanel extends javax.swing.JPanel {
             DefaultTableModel dtm = (DefaultTableModel) tblCars.getModel();
             dtm.setRowCount(0);
             if(checkBoxYesAvailable.isSelected()==true){
-            for(Car car: cabInformation.searchByYesAvailable())
-            {
-            
+            tempArr = cabInformation.searchByYesAvailable(cabInformation.getCarList());
+            for(Car car: tempArr)
+            {        
                 Object[] row = new Object[9];
                 row[0]=car; //Overide Object ToString Brand Name
                 row[1]=car.getModel_num();
@@ -828,9 +843,9 @@ public class ManageCarJPanel extends javax.swing.JPanel {
             }
             }
             else{
-              for(Car car: cabInformation.searchByNoAvailable())
-            {
-            
+               tempArr = cabInformation.searchByNoAvailable(cabInformation.getCarList());
+            for(Car car: tempArr)
+            {     
                 Object[] row = new Object[9];
                 row[0]=car; //Overide Object ToString Brand Name
                 row[1]=car.getModel_num();
@@ -859,6 +874,15 @@ public class ManageCarJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnBrandNameListActionPerformed
 
+    private void btnSecSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSecSearchActionPerformed
+        // TODO add your handling code here:
+        SecondarySearchJPanel panel = new SecondarySearchJPanel(userProcessContainer, cabInformation, tempArr);
+        userProcessContainer.add("BrandNameListJPanel", panel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+        
+    }//GEN-LAST:event_btnSecSearchActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
@@ -873,6 +897,7 @@ public class ManageCarJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnSearchByMfcYear;
     private javax.swing.JButton btnSearchBySerialNo;
     private javax.swing.JButton btnSearchModelNo;
+    private javax.swing.JButton btnSecSearch;
     private javax.swing.JButton btnView;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
