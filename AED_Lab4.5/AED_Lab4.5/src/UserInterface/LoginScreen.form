@@ -26,7 +26,7 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="txtPword" max="32767" attributes="0"/>
+                              <Component id="txtPassword" max="32767" attributes="0"/>
                               <Component id="comboUser" pref="166" max="32767" attributes="0"/>
                           </Group>
                           <Component id="txtTitle" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -45,7 +45,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="comboUser" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="txtPword" min="-2" max="-2" attributes="0"/>
+              <Component id="txtPassword" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnSubmit" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="131" max="32767" attributes="0"/>
@@ -54,7 +54,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="txtPword">
+    <Component class="javax.swing.JTextField" name="txtPassword">
     </Component>
     <Component class="javax.swing.JButton" name="btnSubmit">
       <Properties>
