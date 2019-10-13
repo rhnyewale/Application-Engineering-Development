@@ -22,12 +22,20 @@ public class CustomerDirectory {
         customerList = new ArrayList<>();
     }
 
+//    public List<User> getCustomerList() {
+//        return customerList;
+//    }
+//
+//    public void setCustomerList(List<User> supplierList) {
+//        this.customerList = supplierList;
+//    }
+
     public List<User> getCustomerList() {
         return customerList;
     }
 
-    public void setCustomerList(List<User> supplierList) {
-        this.customerList = supplierList;
+    public void setCustomerList(List<User> customerList) {
+        this.customerList = customerList;
     }
     
 }

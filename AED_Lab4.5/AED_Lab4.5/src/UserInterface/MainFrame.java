@@ -38,11 +38,10 @@ public class MainFrame extends javax.swing.JFrame {
         panelRight = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         btnAdmin = new javax.swing.JButton();
-        btnSupplier = new javax.swing.JButton();
-        btnCustomer = new javax.swing.JButton();
+        btnSupp = new javax.swing.JButton();
+        btnCust = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(500, 350));
 
         panelRight.setLayout(new java.awt.CardLayout());
         jSplitPane1.setRightComponent(panelRight);
@@ -54,17 +53,17 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        btnSupplier.setText("Supplier");
-        btnSupplier.addActionListener(new java.awt.event.ActionListener() {
+        btnSupp.setText("Supplier");
+        btnSupp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSupplierActionPerformed(evt);
+                btnSuppActionPerformed(evt);
             }
         });
 
-        btnCustomer.setText("Customer");
-        btnCustomer.addActionListener(new java.awt.event.ActionListener() {
+        btnCust.setText("Customer");
+        btnCust.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCustomerActionPerformed(evt);
+                btnCustActionPerformed(evt);
             }
         });
 
@@ -75,8 +74,8 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btnAdmin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCustomer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSupplier, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnCust, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSupp, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -85,9 +84,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(btnAdmin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSupplier)
+                .addComponent(btnSupp)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCustomer)
+                .addComponent(btnCust)
                 .addContainerGap(163, Short.MAX_VALUE))
         );
 
@@ -112,19 +111,19 @@ public class MainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierActionPerformed
+    private void btnSuppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuppActionPerformed
         // TODO add your handling code here:
         CardLayout layout = (CardLayout)panelRight.getLayout();
-        panelRight.add(new LoginScreen("Supplier", panelRight, adminUser.getSuppDir().getSupplierList()));
+        panelRight.add(new LoginScreen("Supplier",panelRight, adminUser.getSuppDir().getSupplierList()));
         layout.next(panelRight);
-    }//GEN-LAST:event_btnSupplierActionPerformed
+    }//GEN-LAST:event_btnSuppActionPerformed
 
-    private void btnCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerActionPerformed
+    private void btnCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustActionPerformed
         // TODO add your handling code here:
         CardLayout layout = (CardLayout)panelRight.getLayout();
-        panelRight.add(new LoginScreen("Customer", panelRight, adminUser.getCustDir().getCustomerList()));
+        panelRight.add(new LoginScreen("Customer",panelRight, adminUser.getCustDir().getCustomerList()));
         layout.next(panelRight);
-    }//GEN-LAST:event_btnCustomerActionPerformed
+    }//GEN-LAST:event_btnCustActionPerformed
 
     private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
         // TODO add your handling code here:
@@ -170,8 +169,8 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdmin;
-    private javax.swing.JButton btnCustomer;
-    private javax.swing.JButton btnSupplier;
+    private javax.swing.JButton btnCust;
+    private javax.swing.JButton btnSupp;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JPanel panelRight;

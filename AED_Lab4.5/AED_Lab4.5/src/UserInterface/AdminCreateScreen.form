@@ -28,14 +28,14 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="txtUser" min="-2" pref="173" max="-2" attributes="0"/>
-                          <Component id="txtPword" min="-2" pref="173" max="-2" attributes="0"/>
-                          <Component id="txtRePword" min="-2" pref="173" max="-2" attributes="0"/>
+                          <Component id="txtPassword" min="-2" pref="173" max="-2" attributes="0"/>
+                          <Component id="txtRePassword" min="-2" pref="173" max="-2" attributes="0"/>
                           <Component id="btnCreate" alignment="0" min="-2" pref="173" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="radioSupplier" min="-2" max="-2" attributes="0"/>
-                                  <Component id="radioCustomer" min="-2" max="-2" attributes="0"/>
+                                  <Component id="radioBtnSupplier" min="-2" max="-2" attributes="0"/>
+                                  <Component id="radioBtnCustomer" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -61,18 +61,18 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtPword" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPassword" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtRePword" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtRePassword" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="radioCustomer" min="-2" max="-2" attributes="0"/>
+              <Component id="radioBtnCustomer" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="radioSupplier" min="-2" max="-2" attributes="0"/>
+              <Component id="radioBtnSupplier" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnCreate" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="47" max="32767" attributes="0"/>
@@ -91,9 +91,12 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtUser">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtPword">
+    <Component class="javax.swing.JTextField" name="txtPassword">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtRePword">
+    <Component class="javax.swing.JTextField" name="txtRePassword">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtRePasswordActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
@@ -110,18 +113,21 @@
         <Property name="text" type="java.lang.String" value="re-enter password :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="radioCustomer">
+    <Component class="javax.swing.JRadioButton" name="radioBtnCustomer">
       <Properties>
         <Property name="text" type="java.lang.String" value="Customer"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioCustomerActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioBtnCustomerActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="radioSupplier">
+    <Component class="javax.swing.JRadioButton" name="radioBtnSupplier">
       <Properties>
         <Property name="text" type="java.lang.String" value="Supplier"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioBtnSupplierActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnBack">
       <Properties>

@@ -25,7 +25,7 @@ public class LoginScreen extends javax.swing.JPanel {
     List<User> list;
     JPanel panelRight;
     String role;
-    public LoginScreen(String role,JPanel panelRight, List<User> list) {
+    public LoginScreen(String role, JPanel panelRight, List<User> list) {
         initComponents();
         this.list = list;
         this.panelRight = panelRight;
@@ -42,7 +42,7 @@ public class LoginScreen extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtPword = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JTextField();
         btnSubmit = new javax.swing.JButton();
         comboUser = new javax.swing.JComboBox<>();
         txtTitle = new javax.swing.JLabel();
@@ -63,18 +63,17 @@ public class LoginScreen extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtPword)
-                    .addComponent(comboUser, 0, 166, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(150, 150, 150)
-                .addComponent(btnSubmit)
-                .addContainerGap(171, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtTitle)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(btnSubmit))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtPassword)
+                                .addComponent(comboUser, 0, 166, Short.MAX_VALUE))
+                            .addComponent(txtTitle))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -85,7 +84,7 @@ public class LoginScreen extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(comboUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtPword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnSubmit)
                 .addContainerGap(131, Short.MAX_VALUE))
@@ -94,47 +93,95 @@ public class LoginScreen extends javax.swing.JPanel {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
-        User u = (User)comboUser.getSelectedItem();
-        if (u!=null) {
+       User u = (User)comboUser.getSelectedItem();
+//        if ( list.contains(u) )
+//        {
+//            Supplier s = (Supplier) u;
+//            if(s.verify(txtPword.getText()))
+//            {
+//                grantAccessTo(u);
+//            }
+//        }
+//        else if (  )
+//            else
+//                JOptionPane.showMessageDialog(this, "Please enter a valid password\nEnuser ");
+//            
+//        }
+//        
+//
+//        
+        if(role.equalsIgnoreCase("Supplier"))
+        {
             Supplier s = (Supplier) u;
-            if (s.verify(txtPword.getText())) {
+            if(s.verify(txtPassword.getText()))
                 grantAccessTo(u);
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "PLease Enter a valid Password\nEnuser"+"u have selected correct Customer");
-            }
+            
+            else
+                JOptionPane.showMessageDialog(this, "Please enter a valid password\nEnuser ");
             
         }
-    }//GEN-LAST:event_btnSubmitActionPerformed
+        else if(role.equalsIgnoreCase("Customer"))
+        {
+          Customer c = (Customer) u;
+          
+            if(c.verify(txtPassword.getText()))
+                grantAccessTo(u);
+            
+            else
+                JOptionPane.showMessageDialog(this, "Please enter a valid password\nEnuser ");
+        }
 
+        
+    }//GEN-LAST:event_btnSubmitActionPerformed
+    
+    private void grantAccessTo(User u)
+    {
+       SuccessScreen ss = new SuccessScreen(u);
+       CardLayout layout = (CardLayout)panelRight.getLayout();
+       panelRight.add(ss);
+       layout.next(panelRight);
+               
+    }
     
     private void initialize(){
         //text should either be "Supplier Login Screen" OR "Customer Login Screen"
         //Based on the selection
         txtTitle.setText("****** Login Screen");
         comboUser.removeAllItems();
-        if(role.equalsIgnoreCase("Supplier")) {
+        if(role.equalsIgnoreCase("Supplier"))
+        {
             txtTitle.setText("Supplier Login Screen");
-        }
-        comboUser.removeAllItems();
-        for (User u: list) {
+            comboUser.removeAllItems();
+            for (User u:list)
+        {
             comboUser.addItem(u);
         }
+        }
+        else if(role.equalsIgnoreCase("Customer"))
+        {
+            txtTitle.setText("Customer Login Screen");
+            comboUser.removeAllItems();
+            for (User u:list)
+        {
+            comboUser.addItem(u);
+        }  
+        }
+
+        
+        
         //only customer or suppliers should be listed based on the selection
+//        comboUser.removeAllItems();
+//        for (User u:list)
+//        {
+//            comboUser.addItem(u);
+//        }
     }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSubmit;
     private javax.swing.JComboBox<Object> comboUser;
-    private javax.swing.JTextField txtPword;
+    private javax.swing.JTextField txtPassword;
     private javax.swing.JLabel txtTitle;
     // End of variables declaration//GEN-END:variables
-
-    private void grantAccessTo(User u) {
-        SuccessScreen ss = new SuccessScreen(u);
-        CardLayout layout = (CardLayout)panelRight.getLayout();
-        panelRight.add(ss);
-        layout.next(panelRight);
-    }
 }
